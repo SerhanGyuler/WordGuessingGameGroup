@@ -4,7 +4,7 @@
 
     class WordGuessingGame
     {
-        static string[] words = { "apple", "banana", "cherry", "date", "elderberry" };
+        static string[] words = { "apple", "banana", "cherry", "date", "elderberry", "grapes", "orange", "horse", "pig", "dog", "cat", "elephant", "giraffe", "lion", "tiger", "zebra", "monkey", "bear", "wolf", "fox", "rabbit", "deer", "squirrel", "mouse", "rat", "snake", "lizard", "frog", "toad", "turtle", "crocodile", "alligator", "dolphin", "whale", "shark", "fish", "octopus", "squid", "jellyfish", "starfish", "seahorse", "crab", "lobster", "shrimp", "clam", "oyster", "scallop", "snail", "slug", "butterfly", "moth", "bee", "wasp", "ant", "dragonfly"};
         static Random random = new Random();
 
         static void Main(string[] args)
