@@ -10,7 +10,7 @@
         static void Main(string[] args)
         {
             while (true)
-            {// funka
+            {
                 Console.WriteLine("\nWord Guessing Game");
                 Console.WriteLine("1. Play Game");
                 Console.WriteLine("2. Exit");
