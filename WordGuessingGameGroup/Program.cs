@@ -12,17 +12,27 @@
             while (true)
             {
                 Console.WriteLine("\nWord Guessing Game");
-                Console.WriteLine("1. Play Game");
-                Console.WriteLine("2. Exit");
+                Console.WriteLine("1. Play Game (easy mode)");
+                Console.WriteLine("2. Play Game (medium mode)");
+                Console.WriteLine("3. Play Game (hard mode)");
+                Console.WriteLine("4. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
 
                 if (choice == "1")
                 {
-                    PlayGame();
+                    PlayGame(12);
                 }
                 else if (choice == "2")
+                {
+                    PlayGame(6);
+                }
+                else if (choice == "3")
+                {
+                    PlayGame(3);
+                }
+                else if (choice == "4")
                 {
                     break;
                 }
@@ -33,7 +43,7 @@
             }
         }
 
-        static void PlayGame()
+        static void PlayGame(int attemptsLeft)
         {
             string wordToGuess = words[random.Next(words.Length)];
             char[] guessedWord = new char[wordToGuess.Length];
@@ -41,8 +51,6 @@
             {
                 guessedWord[i] = '_';
             }
-
-            int attemptsLeft = 6;
 
             while (attemptsLeft > 0)
             {
