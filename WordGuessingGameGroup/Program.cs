@@ -57,6 +57,9 @@
                 guessedWord[i] = '_';
             }
 
+            char firstLetter = wordToGuess[0]; // Hint
+            Console.WriteLine($"Hint: The word has {wordToGuess.Length} letters and it starts with the letter '{firstLetter}'.");
+            
             while (attemptsLeft > 0)
             {
                 Console.WriteLine($"\nWord: {new string(guessedWord)}");
