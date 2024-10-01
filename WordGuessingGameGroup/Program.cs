@@ -35,7 +35,7 @@
                 else if (choice == "3")
                 {
                     Array.Resize(ref totalScore, totalScore.Length + 1);
-                    totalScore[totalScore.GetUpperBound(0)]= PlayGame(3);
+                    totalScore[totalScore.GetUpperBound(0)] = PlayGame(3);
                 }
                 else if (choice == "4")
                 {
