@@ -4,14 +4,16 @@
 
     class WordGuessingGame
     {
-        static string[] words = { "apple", "banana", "cherry", "date", "elderberry", "grapes", "orange", "horse", "pig", "dog", "cat", "elephant", "giraffe", "lion", "tiger", "zebra", "monkey", "bear", "wolf", "fox", "rabbit", "deer", "squirrel", "mouse", "rat", "snake", "lizard", "frog", "toad", "turtle", "crocodile", "alligator", "dolphin", "whale", "shark", "fish", "octopus", "squid", "jellyfish", "starfish", "seahorse", "crab", "lobster", "shrimp", "clam", "oyster", "scallop", "snail", "slug", "butterfly", "moth", "bee", "wasp", "ant", "dragonfly"};
+        static string[] words = { "apple", "banana", "cherry", "date", "elderberry", "grapes", "orange", "horse", "pig", "dog", "cat", "elephant", "giraffe", "lion", "tiger", "zebra", "monkey", "bear", "wolf", "fox", "rabbit", "deer", "squirrel", "mouse", "rat", "snake", "lizard", "frog", "toad", "turtle", "crocodile", "alligator", "dolphin", "whale", "shark", "fish", "octopus", "squid", "jellyfish", "starfish", "seahorse", "crab", "lobster", "shrimp", "clam", "oyster", "scallop", "snail", "slug", "butterfly", "moth", "bee", "wasp", "ant", "dragonfly" };
         static Random random = new Random();
 
         static void Main(string[] args)
         {
+            int[] totalScore = [0];
             while (true)
             {
                 Console.WriteLine("\nWord Guessing Game");
+                Console.WriteLine($"current score is {totalScore.Max()} and you got {totalScore.Last()} points");
                 Console.WriteLine("1. Play Game (easy mode)");
                 Console.WriteLine("2. Play Game (medium mode)");
                 Console.WriteLine("3. Play Game (hard mode)");
@@ -22,15 +24,18 @@
 
                 if (choice == "1")
                 {
-                    PlayGame(12);
+                    Array.Resize(ref totalScore, totalScore.Length + 1);
+                    totalScore[totalScore.GetUpperBound(0)] = PlayGame(12);
                 }
                 else if (choice == "2")
                 {
-                    PlayGame(6);
+                    Array.Resize(ref totalScore, totalScore.Length + 1);
+                    totalScore[totalScore.GetUpperBound(0)] = PlayGame(6);
                 }
                 else if (choice == "3")
                 {
-                    PlayGame(3);
+                    Array.Resize(ref totalScore, totalScore.Length + 1);
+                    totalScore[totalScore.GetUpperBound(0)] = PlayGame(3);
                 }
                 else if (choice == "4")
                 {
@@ -43,7 +48,7 @@
             }
         }
 
-        static void PlayGame(int attemptsLeft)
+        static int PlayGame(int attemptsLeft)
         {
             string wordToGuess = words[random.Next(words.Length)];
             char[] guessedWord = new char[wordToGuess.Length];
@@ -61,14 +66,14 @@
                 Console.WriteLine($"Attempts left: {attemptsLeft}");
                 Console.Write("Guess a letter: ");
 
-                char guess = Console.ReadLine().ToLower()[0];
+                char? guess = Console.ReadLine()?.ToLower()[0];
                 bool correctGuess = false;
 
                 for (int i = 0; i < wordToGuess.Length; i++)
                 {
-                    if (wordToGuess[i] == guess)
+                    if (wordToGuess[i] == guess && guess != null)
                     {
-                        guessedWord[i] = guess;
+                        guessedWord[i] = (char)guess;
                         correctGuess = true;
                     }
                 }
@@ -82,11 +87,12 @@
                 if (new string(guessedWord) == wordToGuess)
                 {
                     Console.WriteLine($"Congratulations! You guessed the word: {wordToGuess}");
-                    return;
+                    return attemptsLeft;
                 }
             }
 
             Console.WriteLine($"Game over! The word was: {wordToGuess}");
+            return 0;
         }
     }
 }
